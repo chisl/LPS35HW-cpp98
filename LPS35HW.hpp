@@ -2,7 +2,7 @@
  * name:        LPS35HW
  * description: 260-1260 hPa absolute digital output barometer with water resistant package
  * manuf:       STMicroelectronics
- * version:     0.1
+ * version:     Version 0.1
  * url:         http://www.st.com/resource/en/datasheet/lps35hw.pdf
  * date:        2018-01-04
  * author       https://chisl.io/
@@ -166,7 +166,7 @@ public:
 	 * REG THS_P:
 	 * 8.2-3
 	 * Threshold value for pressure interrupt generation.
-	 * This register contains the high part of threshold value for pressure interrupt generation.
+	 * This register contains the threshold value for pressure interrupt generation.
 	 */
 	struct THS_P
 	{
@@ -211,7 +211,7 @@ public:
 		/* Bits WHO_AM_I: */
 		struct WHO_AM_I_
 		{
-			/* Mode: */
+			/* MODE - */
 			static const uint8_t dflt = 0b10110001; // 8'b10110001
 			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
 		};
@@ -634,7 +634,7 @@ public:
 	/*
 	 * REG REF_P:
 	 * 8.9
-	 * Reference pressure (LSB data)
+	 * Reference pressure
 	 * The value is expressed as 2’s complement.
 	 * The reference pressure value is used when AUTOZERO or AUTORIFP function is
 	 * enabled(refer to the Section 10.7: "CTRL_REG3 (12h)" register) and for the Autozero
@@ -695,7 +695,7 @@ public:
 		/* Bits RPDS: */
 		struct RPDS_
 		{
-			/* Mode: */
+			/* MODE - */
 			static const uint16_t mask = 0b1111111111111111; // [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
 		};
 	};
@@ -998,21 +998,21 @@ public:
 		/* Bits PRESS_OUT: */
 		struct PRESS_OUT_
 		{
-			/* Mode: */
-			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
+			/* MODE - */
+			static const uint32_t mask = 0b111111111111111111111111; // [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 		};
 	};
 	
 	/* Set register PRESS_OUT */
-	void setPRESS_OUT(uint8_t value)
+	void setPRESS_OUT(uint32_t value)
 	{
-		write(PRESS_OUT::__address, value, 8);
+		write(PRESS_OUT::__address, value, 24);
 	}
 	
 	/* Get register PRESS_OUT */
-	uint8_t getPRESS_OUT()
+	uint32_t getPRESS_OUT()
 	{
-		return read8(PRESS_OUT::__address, 8);
+		return read32(PRESS_OUT::__address, 24);
 	}
 	
 	
@@ -1037,21 +1037,21 @@ public:
 		/* Bits TEMP_OUT: */
 		struct TEMP_OUT_
 		{
-			/* Mode: */
-			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
+			/* MODE - */
+			static const uint32_t mask = 0b111111111111111111111111; // [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 		};
 	};
 	
 	/* Set register TEMP_OUT */
-	void setTEMP_OUT(uint8_t value)
+	void setTEMP_OUT(uint32_t value)
 	{
-		write(TEMP_OUT::__address, value, 8);
+		write(TEMP_OUT::__address, value, 24);
 	}
 	
 	/* Get register TEMP_OUT */
-	uint8_t getTEMP_OUT()
+	uint32_t getTEMP_OUT()
 	{
-		return read8(TEMP_OUT::__address, 8);
+		return read32(TEMP_OUT::__address, 24);
 	}
 	
 	
@@ -1075,7 +1075,7 @@ public:
 		/* Bits LPFP_RES: */
 		struct LPFP_RES_
 		{
-			/* Mode: */
+			/* MODE - */
 			static const uint8_t mask = 0b11111111; // [0,1,2,3,4,5,6,7]
 		};
 	};
